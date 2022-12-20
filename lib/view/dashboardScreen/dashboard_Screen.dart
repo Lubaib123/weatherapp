@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/current_location_controller.dart';
@@ -15,8 +16,9 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var selectedItems = "h";
-    bool selected = selectedItems == "";
+    //var selectedItems = "";
+    bool selected = false;
+    //selectedItems == "";
     return Consumer<CurrentLocationController>(
         builder: (context, currentLocationProvider, _) {
       return Consumer<WeatherDataController>(
@@ -47,6 +49,15 @@ class DashboardScreen extends StatelessWidget {
                             appBar: AppBar(
                               bottom: PreferredSize(
                                 preferredSize: Size.fromHeight(50),
+                                // child: TextDropdownFormField(
+                                //   options: ["", "Male", "Female"],
+                                //   decoration: InputDecoration(
+                                //     border: OutlineInputBorder(),
+                                //     suffixIcon: Icon(Icons.arrow_drop_down),
+                                //     labelText: "Gender",
+                                //   ),
+                                //   dropdownHeight: 120,
+                                // ),
                                 child: Container(
                                     margin: const EdgeInsets.symmetric(
                                         horizontal: 16),
@@ -66,7 +77,15 @@ class DashboardScreen extends StatelessWidget {
                                         "rain"
                                       ],
                                       onChanged: (val) {
-                                        print(val);
+                                        // print(val);
+
+                                        selected = true;
+                                        // if(val =){
+
+                                        // }
+                                        //print(selected);
+
+                                        searchandsort(val!, sfProvider);
                                       },
                                       selectedItem: selectedItems,
                                     )),
@@ -143,8 +162,8 @@ class DashboardScreen extends StatelessWidget {
                                         ),
                                       ),
                                       selected
-                                          ? SizedBox()
-                                          :
+                                          ?
+
                                           // ignore: dead_code
                                           Container(
                                               height: 450,
@@ -153,7 +172,58 @@ class DashboardScreen extends StatelessWidget {
                                                   right: 20.0,
                                                   bottom: 20),
                                               decoration: datacardtheme(),
-                                            ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Icon(
+                                                          datacarddata[myindex]
+                                                              [0],
+                                                          size: 100,
+                                                        ),
+                                                        // Icon(headicon),
+                                                        const SizedBox(
+                                                          width: 20,
+                                                        ),
+                                                        Text(
+                                                          datacarddata[myindex]
+                                                              [1],
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .titleLarge,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Text(
+                                                        // sfProvider
+                                                        //     .visiblity,
+                                                        sfProvider
+                                                                .CurrentdataList[
+                                                            myindex],
+                                                        style: TextStyle(
+                                                            fontSize: 100)),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text(
+                                                        datacarddata[myindex]
+                                                            [1],
+                                                        style: TextStyle(
+                                                            fontSize: 60)),
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          : SizedBox(),
 
                                       //data in grid
                                       GridData(sfProvider),
@@ -243,3 +313,54 @@ Container GridData(SharedPrefernceController sfProvider) {
         }),
   );
 }
+
+// Container mycontainer(SharedPrefernceController sfprovider) {
+//   return Container(
+//     height: 200,
+//     width: double.infinity,
+//     decoration: datacardtheme(),
+//   child: Center(child :Text(sfprovider.CurrentdataList[1])),
+//   );
+// }
+
+int searchandsort(String val, SharedPrefernceController sfProvider) {
+  myindex = -1;
+
+  if (val == "clouds") {
+    print(" selected items : 0");
+    myindex = 0;
+    return myindex;
+  } else if (val == "visiblity") {
+    print(" selected items :1");
+    myindex = 1;
+    return myindex;
+  } else if (val == "wind") {
+    print(" selected items : 2");
+    myindex = 2;
+    return myindex;
+  } else if (val == "Humidity") {
+    print(" selected items : 3");
+    myindex = 3;
+    return myindex;
+  } else if (val == "feelslike") {
+    print(" selected items :4");
+    myindex = 4;
+    return myindex;
+  } else if (val == "rain") {
+    print(" selected items :5");
+    myindex = 5;
+    return myindex;
+  } else {
+    myindex = 6;
+    return myindex;
+  }
+}
+
+
+
+//  "clouds",
+//                               "visiblity",
+//                                         "wind",
+//                                         "Humidity",
+//                                         "feelslike",
+//                                         "rain"

@@ -37,3 +37,8 @@ List datacarddata = [
     '%',
   ]
 ];
+
+
+var selectedItems = "";
+// int index = -1;
+int myindex = -1;
