@@ -15,20 +15,23 @@ BoxDecoration scaffoldColor() {
 
 TextTheme AppTextTheme() {
   return const TextTheme(
-    // displayLarge: TextStyle(
-    //     fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.black),
-    // titleMedium: TextStyle(fontSize: 60.0, color: Colors.white),
-    // bodyMedium:
-    //     TextStyle(fontSize: 25.0, fontFamily: 'Hind', color: Colors.white),
-    // bodyLarge:
-    //     TextStyle(fontSize: 14.0, fontFamily: 'Hind', color: Colors.white),
+    displayLarge: TextStyle(
+        fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.black),
+    //titleMedium: TextStyle(fontSize: 60.0, color: Colors.white),
+    titleLarge: TextStyle(fontSize: 25, color: Colors.white),
+    titleSmall: TextStyle(fontSize: 60.0, color: Colors.white),
+    displayMedium: TextStyle(fontSize: 40.0, color: Colors.white),
+    bodyMedium:
+        TextStyle(fontSize: 25.0, fontFamily: 'Hind', color: Colors.white),
+    bodyLarge:
+        TextStyle(fontSize: 16.0, fontFamily: 'Hind', color: Colors.white),
   );
 }
 
 BoxDecoration scafoldTheme() {
   return const BoxDecoration(
       image: DecorationImage(
-        fit: BoxFit.cover,
+          fit: BoxFit.cover,
           image: AssetImage('assets/images/DashBoardScreenBackground.jpg')));
 }
 

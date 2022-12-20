@@ -51,6 +51,9 @@ class SharedPrefernceController extends ChangeNotifier {
     feelslike = prefs.getString('feelslike') ?? "loading";
     rain = prefs.getString('rain') ?? "loading";
 
+    
+
+
     notifyListeners();
 
     return prefs.getString('location').toString();

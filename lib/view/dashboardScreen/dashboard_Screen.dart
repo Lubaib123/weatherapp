@@ -15,8 +15,8 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var selectedItems = null;
-    bool selected = selectedItems == null;
+    var selectedItems = "h";
+    bool selected = selectedItems == "";
     return Consumer<CurrentLocationController>(
         builder: (context, currentLocationProvider, _) {
       return Consumer<WeatherDataController>(
@@ -27,7 +27,6 @@ class DashboardScreen extends StatelessWidget {
               currentLocationProvider.longitude!,
             ),
             builder: (context, weatherData) {
-
               return weatherData.hasData
                   ? Consumer<SharedPrefernceController>(
                       builder: (context, sfProvider, child) {
@@ -47,47 +46,30 @@ class DashboardScreen extends StatelessWidget {
                             backgroundColor: Colors.transparent,
                             appBar: AppBar(
                               bottom: PreferredSize(
+                                preferredSize: Size.fromHeight(50),
                                 child: Container(
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 16),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 16),
                                     child: DropdownSearch<String>(
                                       popupProps: PopupProps.menu(
                                         showSelectedItems: true,
                                         disabledItemFn: (String s) =>
                                             s.startsWith('I'),
                                       ),
-                                      items: [
-                                        "clouds", "visiblity", "wind",
-                                        "Humidity", "feelslike", "rain"
-
-                                        // sfProvider.clouds,
-                                        // sfProvider.visiblity,
-                                        // sfProvider.wind,
-                                        // sfProvider.Humidity,
-                                        // sfProvider.feelslike,
-                                        // sfProvider.rain
-                                        // "Brazil",
-                                        // "Italia (Disabled)",
-                                        // "Tunisia",
-                                        // 'Canada'
+                                      items: const [
+                                        "",
+                                        "clouds",
+                                        "visiblity",
+                                        "wind",
+                                        "Humidity",
+                                        "feelslike",
+                                        "rain"
                                       ],
-                                      // dropdownDecoratorProps:
-                                      //     DropDownDecoratorProps(
-                                      //   dropdownSearchDecoration:
-                                      //       InputDecoration(
-                                      //     labelText: "Menu mode",
-                                      //     hintText: "country in menu mode",
-                                      //   ),
-                                      // ),
                                       onChanged: (val) {
                                         print(val);
                                       },
                                       selectedItem: selectedItems,
                                     )),
-
-                                // mode:Mode.MENU
-
-                                preferredSize: Size.fromHeight(50),
                               ),
                               actions: [
                                 Padding(
@@ -142,31 +124,21 @@ class DashboardScreen extends StatelessWidget {
                                       // MainData
                                       SizedBox(
                                         height: 170,
-                                        width: 150,
+                                        width: double.infinity,
                                         child: Column(
                                           children: [
                                             Text(
                                               sfProvider.currentTemperature,
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .titleMedium,
+                                                  .titleSmall,
                                             ),
                                             Text(
                                               sfProvider.condition,
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .bodyMedium,
+                                                  .titleLarge,
                                             ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Text(
-                                              "H:90°  L:71°",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium,
-                                            ),
-                                            // midtitle(context, "edapt")
                                           ],
                                         ),
                                       ),
@@ -183,127 +155,8 @@ class DashboardScreen extends StatelessWidget {
                                               decoration: datacardtheme(),
                                             ),
 
-                                      // Container(
-                                      //   margin: const EdgeInsets.only(
-                                      //       left: 20.0, right: 20.0, bottom: 20),
-                                      //   height: 150,
-                                      //   width: 390,
-                                      //   decoration: datacardtheme(),
-                                      //   child: SizedBox(
-                                      //     height: 200.0,
-                                      //     child: ListView.builder(
-                                      //         physics: ClampingScrollPhysics(),
-                                      //         shrinkWrap: true,
-                                      //         scrollDirection: Axis.horizontal,
-                                      //         itemCount: 24,
-                                      //         itemBuilder: (BuildContext context, int index) =>
-                                      //             Column(
-                                      //               mainAxisAlignment: MainAxisAlignment.center,
-                                      //               children: [
-                                      //                 Text(index.toString()),
-                                      //                 const Padding(
-                                      //                   padding: EdgeInsets.only(
-                                      //                       left: 23,
-                                      //                       right: 23,
-                                      //                       top: 10,
-                                      //                       bottom: 10),
-                                      //                   child: Icon(Icons.sunny_snowing),
-                                      //                 ),
-                                      //                 Text('23°'),
-                                      //               ],
-                                      //             )),
-                                      //   ),
-                                      // ),
-
                                       //data in grid
-                                      Container(
-                                        margin: const EdgeInsets.only(
-                                            left: 20.0,
-                                            right: 20.0,
-                                            bottom: 20),
-                                        width: double.infinity,
-                                        child: GridView.builder(
-                                            physics: const ScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemCount: 6,
-                                            gridDelegate:
-                                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                                    childAspectRatio: 2 / 2,
-                                                    crossAxisCount: 2,
-                                                    crossAxisSpacing: 10,
-                                                    mainAxisSpacing: 10),
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return //gridCard(context, index);
-                                                  Container(
-                                                margin:
-                                                    const EdgeInsets.all(10),
-                                                //  margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10),
-                                                height: 160,
-                                                width: 160,
-                                                decoration: datacardtheme(),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          Icon(datacarddata[
-                                                              index][0]),
-                                                          // Icon(headicon),
-                                                          const SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Text(
-                                                            datacarddata[index]
-                                                                [1],
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyLarge,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Text(
-                                                            // sfProvider
-                                                            //     .visiblity,
-                                                            sfProvider
-                                                                    .CurrentdataList[
-                                                                index],
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .titleMedium,
-                                                          ),
-                                                          const SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Text(
-                                                            datacarddata[index]
-                                                                [2],
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyLarge,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                //  color: Colors.white,
-                                              );
-                                            }),
-                                      ),
+                                      GridData(sfProvider),
 
                                       // gridCard(context, Icons.sunny_snowing, "Snow", '%', 50)
                                       // gridCard(context, "Humidity", "%", 80),
@@ -323,52 +176,70 @@ class DashboardScreen extends StatelessWidget {
       });
     });
   }
+}
 
-  Container gridCard(BuildContext context, int index, String sflist) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      //  margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10),
-      height: 160,
-      width: 160,
-      decoration: datacardtheme(),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                Icon(datacarddata[index][0]),
-                // Icon(headicon),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  datacarddata[index][1],
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              ],
+Container GridData(SharedPrefernceController sfProvider) {
+  return Container(
+    margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20),
+    width: double.infinity,
+    child: GridView.builder(
+        physics: const ScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: 6,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: 2 / 2,
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10),
+        itemBuilder: (BuildContext context, int index) {
+          return //gridCard(context, index);
+              Container(
+            margin: const EdgeInsets.all(10),
+            //  margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10),
+            height: 160,
+            width: 160,
+            decoration: datacardtheme(),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Icon(datacarddata[index][0]),
+                      // Icon(headicon),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        datacarddata[index][1],
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        // sfProvider
+                        //     .visiblity,
+                        sfProvider.CurrentdataList[index],
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        datacarddata[index][2],
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "80",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  datacarddata[index][2],
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      //  color: Colors.white,
-    );
-  }
+            //  color: Colors.white,
+          );
+        }),
+  );
 }
