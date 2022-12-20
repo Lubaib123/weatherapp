@@ -15,13 +15,13 @@ BoxDecoration scaffoldColor() {
 
 TextTheme AppTextTheme() {
   return const TextTheme(
-    displayLarge: TextStyle(
-        fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.white),
-    titleMedium: TextStyle(fontSize: 60.0, color: Colors.white),
-    bodyMedium:
-        TextStyle(fontSize: 25.0, fontFamily: 'Hind', color: Colors.white),
-    bodyLarge:
-        TextStyle(fontSize: 14.0, fontFamily: 'Hind', color: Colors.white),
+    // displayLarge: TextStyle(
+    //     fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.black),
+    // titleMedium: TextStyle(fontSize: 60.0, color: Colors.white),
+    // bodyMedium:
+    //     TextStyle(fontSize: 25.0, fontFamily: 'Hind', color: Colors.white),
+    // bodyLarge:
+    //     TextStyle(fontSize: 14.0, fontFamily: 'Hind', color: Colors.white),
   );
 }
 

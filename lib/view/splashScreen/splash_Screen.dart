@@ -36,8 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        final currentLocationProvider =
-            Provider.of<CurrentLocationController>(context, listen: false);
+        final currentLocationProvider = Provider.of<CurrentLocationController>(context, listen: false);
 
         return currentLocationProvider.isPermissionGiven
             ? const DashboardScreen()

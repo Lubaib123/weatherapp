@@ -8,12 +8,15 @@ import 'package:weather_app/controller/weather_controller.dart';
 import 'package:weather_app/utilities/constants/constant.dart';
 import 'package:weather_app/utilities/theme.dart';
 import 'package:weather_app/view/dashboardScreen/dashboard_Widget.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var selectedItems = null;
+    bool selected = selectedItems == null;
     return Consumer<CurrentLocationController>(
         builder: (context, currentLocationProvider, _) {
       return Consumer<WeatherDataController>(
@@ -24,6 +27,7 @@ class DashboardScreen extends StatelessWidget {
               currentLocationProvider.longitude!,
             ),
             builder: (context, weatherData) {
+
               return weatherData.hasData
                   ? Consumer<SharedPrefernceController>(
                       builder: (context, sfProvider, child) {
@@ -41,7 +45,72 @@ class DashboardScreen extends StatelessWidget {
                             }),
 
                             backgroundColor: Colors.transparent,
-                            appBar: AppBarWidget(),
+                            appBar: AppBar(
+                              bottom: PreferredSize(
+                                child: Container(
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 16),
+                                    child: DropdownSearch<String>(
+                                      popupProps: PopupProps.menu(
+                                        showSelectedItems: true,
+                                        disabledItemFn: (String s) =>
+                                            s.startsWith('I'),
+                                      ),
+                                      items: [
+                                        "clouds", "visiblity", "wind",
+                                        "Humidity", "feelslike", "rain"
+
+                                        // sfProvider.clouds,
+                                        // sfProvider.visiblity,
+                                        // sfProvider.wind,
+                                        // sfProvider.Humidity,
+                                        // sfProvider.feelslike,
+                                        // sfProvider.rain
+                                        // "Brazil",
+                                        // "Italia (Disabled)",
+                                        // "Tunisia",
+                                        // 'Canada'
+                                      ],
+                                      // dropdownDecoratorProps:
+                                      //     DropDownDecoratorProps(
+                                      //   dropdownSearchDecoration:
+                                      //       InputDecoration(
+                                      //     labelText: "Menu mode",
+                                      //     hintText: "country in menu mode",
+                                      //   ),
+                                      // ),
+                                      onChanged: (val) {
+                                        print(val);
+                                      },
+                                      selectedItem: selectedItems,
+                                    )),
+
+                                // mode:Mode.MENU
+
+                                preferredSize: Size.fromHeight(50),
+                              ),
+                              actions: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.search,
+                                      size: 35,
+                                    ),
+                                  ),
+                                )
+                              ],
+                              centerTitle: false,
+                              elevation: 0,
+                              // title: Row(
+                              //   children: const [
+                              //     Icon(Icons.location_pin),
+                              //     Text("Kozhikode"),
+                              //   ],
+                              // ),
+                              backgroundColor: Colors.transparent,
+                            ),
                             body: SingleChildScrollView(
                               child: SafeArea(
                                 child: Center(
@@ -101,6 +170,18 @@ class DashboardScreen extends StatelessWidget {
                                           ],
                                         ),
                                       ),
+                                      selected
+                                          ? SizedBox()
+                                          :
+                                          // ignore: dead_code
+                                          Container(
+                                              height: 450,
+                                              margin: const EdgeInsets.only(
+                                                  left: 20.0,
+                                                  right: 20.0,
+                                                  bottom: 20),
+                                              decoration: datacardtheme(),
+                                            ),
 
                                       // Container(
                                       //   margin: const EdgeInsets.only(
@@ -195,7 +276,9 @@ class DashboardScreen extends StatelessWidget {
                                                           Text(
                                                             // sfProvider
                                                             //     .visiblity,
-                                                            sfProvider.CurrentdataList[index],
+                                                            sfProvider
+                                                                    .CurrentdataList[
+                                                                index],
                                                             style: Theme.of(
                                                                     context)
                                                                 .textTheme

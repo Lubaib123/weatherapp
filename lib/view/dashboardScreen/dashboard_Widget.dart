@@ -2,31 +2,31 @@ import 'package:flutter/material.dart';
 
 //Appbar
 
-AppBar AppBarWidget() {
-  return AppBar(
-    actions: [
-      Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.search,
-            size: 35,
-          ),
-        ),
-      )
-    ],
-    centerTitle: false,
-    elevation: 0,
-    // title: Row(
-    //   children: const [
-    //     Icon(Icons.location_pin),
-    //     Text("Kozhikode"),
-    //   ],
-    // ),
-    backgroundColor: Colors.transparent,
-  );
-}
+// AppBar AppBarWidget() {
+//   return AppBar(
+//     actions: [
+//       Padding(
+//         padding: const EdgeInsets.all(10.0),
+//         child: IconButton(
+//           onPressed: () {},
+//           icon: const Icon(
+//             Icons.search,
+//             size: 35,
+//           ),
+//         ),
+//       )
+//     ],
+//     centerTitle: false,
+//     elevation: 0,
+//     // title: Row(
+//     //   children: const [
+//     //     Icon(Icons.location_pin),
+//     //     Text("Kozhikode"),
+//     //   ],
+//     // ),
+//     backgroundColor: Colors.transparent,
+//   );
+// }
 
 // SizedBox weatherMainData(BuildContext context) {
 //   return SizedBox(
